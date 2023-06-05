@@ -9,5 +9,5 @@ select thread#, max(sequence#) "Last Standby Seq Applied" from v$archived_log va
 v$database vdb where val.resetlogs_change# = vdb.resetlogs_change# and val.applied in
 ('YES','IN-MEMORY') group by thread# order by 1;
 
-select CHECKPOINT_TIME, count(*) from v$datafile_header group by CHECKPOINT_TIME order by 1;
+select to_char(CHECKPOINT_TIME,'dd/mm/yyyy'), count(*) from v$datafile_header group by to_char(CHECKPOINT_TIME,'dd/mm/yyyy') order by 1;
 
